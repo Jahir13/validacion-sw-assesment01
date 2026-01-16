@@ -1,10 +1,7 @@
 package com.viraj.sample.entity;
 
-import lombok.Data;
-
 import javax.persistence.*;
 
-@Data
 @Entity
 @Table(name = "EMPLOYEE")
 public class Employee {
@@ -34,6 +31,14 @@ public class Employee {
 
     public void setEmployeeName(String employeeName) {
         this.employeeName = employeeName;
+    }
+
+    public long getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(long employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getEmployeeDescription() {

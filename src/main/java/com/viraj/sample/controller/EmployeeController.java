@@ -1,8 +1,7 @@
 package com.viraj.sample.controller;
 
-import com.viraj.sample.entity.Employee;
+import com.viraj.sample.dto.EmployeeDTO;
 import com.viraj.sample.service.EmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,8 +10,11 @@ import java.util.List;
 @RequestMapping("/employee/")
 public class EmployeeController {
 
-    @Autowired
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
+
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @GetMapping(path = "/hello")
     public String getMessage() {
@@ -20,23 +22,22 @@ public class EmployeeController {
     }
 
     @PostMapping("/save")
-    public Employee saveEmployee(@RequestBody Employee employee) {
-
+    public EmployeeDTO saveEmployee(@RequestBody EmployeeDTO employee) {
         return employeeService.saveEmployee(employee);
     }
 
     @PutMapping("/update")
-    public Employee updateEmployee(@RequestBody Employee employee) {
+    public EmployeeDTO updateEmployee(@RequestBody EmployeeDTO employee) {
         return employeeService.updateEmployee(employee);
     }
 
     @GetMapping("/getall")
-    public List<Employee> getAllEmployees() {
+    public List<EmployeeDTO> getAllEmployees() {
         return employeeService.getAllEmployees();
     }
 
     @GetMapping("/getone/{employeeId}")
-    public Employee getEmployee(@PathVariable(name = "employeeId") Long employeeId) {
+    public EmployeeDTO getEmployee(@PathVariable(name = "employeeId") Long employeeId) {
         return employeeService.getEmployee(employeeId);
     }
 
